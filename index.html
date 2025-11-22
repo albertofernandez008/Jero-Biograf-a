@@ -4,22 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jero — Biografía · Los Chichos</title>
+  <!-- Montserrat Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-      background: #181818;
-    }
-    body {
-      margin: 0; font-family: 'Montserrat', Arial, sans-serif; color: #ededed; background: #181818;
-    }
+    html { scroll-behavior: smooth; background: #181818;}
+    body { margin:0; font-family:'Montserrat',Arial,sans-serif; color:#ededed; background:#181818;}
     .topbar {
       position:fixed; top:0; left:0; width:100vw; height:62px; z-index:999;
       background:#181818; border-bottom:1px solid #27282a; display:flex; align-items:center; justify-content:space-between; padding:0 18px;
     }
-    .brand { color:#ffd601; font-weight:800; font-size:22px; letter-spacing:.09em;}
+    .brand { color:#ffd601; font-weight:800; font-size:22px; letter-spacing:.09em; text-shadow:0 1px 8px #0007; flex:0 0 auto;}
     .nav-scroll {flex:1 1 0%; overflow-x:auto; white-space:nowrap; scrollbar-width:none; margin:0 20px;}
     .nav-scroll::-webkit-scrollbar{display:none;}
     .nav {
@@ -30,16 +26,16 @@
       padding:4px 0; font-weight:600; border-bottom:2px solid transparent; transition:border .2s, color .2s; display:inline-block;
     }
     .nav a.active, .nav a:hover {color:#ffd601; border-bottom:2px solid #ffd601;}
-    .search { color:#b2b6bc; font-size:15px; font-weight:500;}
     .wrapper {max-width:900px; margin:90px auto 0 auto; padding-bottom:48px;}
-    section {padding:56px 3vw 0 3vw; margin-bottom:18px;}
+    section {padding:58px 3vw 0 3vw; margin-bottom:18px;}
     .section--portada {background:linear-gradient(115deg, #181818 68%, #232425 100%);}
+    .grid-portada {display:flex; flex-direction:column; align-items:start; justify-content:center; padding:0 8vw; margin-top:18px;}
     .titulo-portada {font-size:clamp(32px,7vw,54px); font-weight:800; color:#ffd601; line-height:1.13; margin:0 0 12px 0; letter-spacing:-.02em; text-shadow:0 3px 32px #0001;}
     .sub-portada {color:#b2b6bc; font-size:19px; margin-bottom:18px; max-width:52ch; min-height:33px; font-weight:500; line-height:1.33;}
-    .num-portada {font-weight:700; font-size:27px; color:#ffd601; letter-spacing:.09em; opacity:.18; margin-bottom:23px;}
+    .num-portada {font-weight:700; font-size:27px; color:#ffd601; letter-spacing:.09em; opacity:.18; padding:18px 0 0 0;}
     .foto-portada {width:370px; max-width:97vw; height:auto; border-radius:14px; margin:auto; align-self:center; box-shadow:0 8px 44px rgba(0,0,0,0.3); filter:grayscale(.95) contrast(1.01); background:#232529; border:3px solid #27282a; margin-bottom:28px;}
     .card-lateral {background:#232529; border-radius:14px; box-shadow:0 2px 20px #0008; color:#b2b6bc; font-size:15px; padding:14px 16px; margin-top:14px; width:315px; max-width:91vw; word-break:break-word; opacity:.95;}
-    .title {font-size:clamp(24px,5vw,44px); font-weight:800; color:#ffd601; text-shadow:0 1px 6px #111a; margin-bottom:14px;}
+    .title {font-size:clamp(24px,6vw,44px); font-weight:800; color:#ffd601; text-shadow:0 1px 6px #111a; margin-bottom:14px;}
     .subtitle{ color:#b2b6bc; font-size:clamp(15px,2vw,20px); margin-bottom:16px;}
     h2.title, h2 {margin-bottom:12px;}
     h3 {margin-top:25px; margin-bottom:13px;}
@@ -48,25 +44,22 @@
     .fragmento-audio h4{margin:0 0 7px 0;color:#ffd601; font-size:16px;}
     audio{ width:100%; border-radius:9px;}
     ul.copy li{margin-bottom:7px;}
-    /* Scroll anchor space for fixed topbar */
-    section {scroll-margin-top:70px;}
+    section {scroll-margin-top:74px;} /* Ajusta para que el contenido no quede debajo del header */
     @media (max-width:800px){
       .wrapper{padding-bottom:24px;}
-      section{padding-top:46px;}
+      section{padding-top:36px;}
       .card-lateral{font-size:12px;padding:11px;}
-      .search{display:none;}
       .foto-portada{width:99vw;}
     }
     @media (max-width:600px){
       .wrapper{margin-top:22px;}
-      section{padding-top:30px;}
+      section{padding-top:24px;}
       .titulo-portada{font-size:clamp(18px,12vw,28px);}
     }
   </style>
 </head>
 <body>
   <div class="topbar">
-    <div class="brand">Jeros</div>
     <div class="nav-scroll"><nav><ul class="nav">
       <li><a href="#portada" class="active">Inicio</a></li>
       <li><a href="#bio">Biografía</a></li>
@@ -74,72 +67,79 @@
       <li><a href="#disco">Discografía</a></li>
       <li><a href="#legado">Legado</a></li>
     </ul></nav></div>
-    <div class="search">Buscar...</div>
   </div>
   <div class="wrapper">
     <!-- Portada -->
     <section id="portada" class="section--portada">
-      <div style="margin-top:2px;">
-        <div class="sub-portada">Los Chichos</div>
-        <div class="titulo-portada">Jeros</div>
+      <div class="grid-portada">
+        <div style="margin-top:2px;">
+          <div class="titulo-portada">Jeros</div>
+        </div>
+        <div class="sub-portada">"Una voz genuina, una pluma sincera, y el alma de la rumba española. Jero transformó las historias cotidianas en himnos de millones, marcando para siempre el sonido y el corazón de Los Chichos. Su música sigue resonando como símbolo de verdad, barrio y esperanza."</div>
+        <img src="assets/images/Jeros-1024x614_resized.png" alt="Jero retrato" class="foto-portada" />
+        <div class="card-lateral">
+          Juan Antonio Jiménez Muñoz, más conocido como Jero, fue el principal compositor y vocalista del legendario grupo Los Chichos. Nacido en Valladolid en 1951, su voz y sus letras revolucionaron la rumba española en los años 70 y 80.
+        </div>
       </div>
-      <div class="sub-portada">"Una voz genuina, una pluma sincera, y el alma de la rumba española. Jero transformó las historias cotidianas en himnos de millones, marcando para siempre el sonido y el corazón de Los Chichos. Su música sigue resonando como símbolo de verdad, barrio y esperanza."</div>
-      <img src="assets/images/Jeros-1024x614_resized.png" alt="Jero retrato" class="foto-portada" />
-      <div class="card-lateral">
-        Juan Antonio Jiménez Muñoz, más conocido como Jero, fue el principal compositor y vocalista del legendario grupo Los Chichos. Nacido en Valladolid en 1951, su voz y sus letras revolucionaron la rumba española en los años 70 y 80.
-      </div>
-      <div class="num-portada">001</div>
     </section>
     <!-- Biografía -->
     <section id="bio">
-      <h2 class="title">Biografía</h2>
-      <p class="copy">Juan Antonio Jiménez Muñoz, más conocido como Jero, fue el principal compositor y vocalista del legendario grupo Los Chichos. Nacido en Valladolid en 1951, su voz y sus letras revolucionaron la rumba española en los años 70 y 80. Jero destacó por su capacidad única para contar historias de la calle y sentimientos intensos, reflejando en sus canciones la vida cotidiana, la lucha y las esperanzas de varias generaciones. Su paso por Los Chichos dejó huella indeleble en la música popular y consolidó su figura como uno de los grandes referentes de la rumba moderna en España.</p>
-      <img src="assets/images/Sin-titulo-1-1-1024x576.jpg" alt="Jero y Los Chichos" class="img-responsive" />
-      <h3>Momentos clave</h3>
-      <ul class="copy">
-        <li>Debut con Los Chichos (1974).</li>
-        <li>BSO Yo, el Vaquilla (1985).</li>
-        <li>Carrera en solitario (1990–1992).</li>
-      </ul>
+      <div class="section-content">
+        <h2 class="title">Biografía</h2>
+        <p class="copy">Juan Antonio Jiménez Muñoz, más conocido como Jero, fue el principal compositor y vocalista del legendario grupo Los Chichos. Nacido en Valladolid en 1951, su voz y sus letras revolucionaron la rumba española en los años 70 y 80. Jero destacó por su capacidad única para contar historias de la calle y sentimientos intensos, reflejando en sus canciones la vida cotidiana, la lucha y las esperanzas de varias generaciones. Su paso por Los Chichos dejó huella indeleble en la música popular y consolidó su figura como uno de los grandes referentes de la rumba moderna en España.</p>
+        <img src="assets/images/Sin-titulo-1-1-1024x576.jpg" alt="Jero y Los Chichos" class="img-responsive" />
+        <h3>Momentos clave</h3>
+        <ul class="copy">
+          <li>Debut con Los Chichos (1974).</li>
+          <li>BSO Yo, el Vaquilla (1985).</li>
+          <li>Carrera en solitario (1990–1992).</li>
+        </ul>
+      </div>
     </section>
     <!-- Canciones -->
     <section id="canciones">
-      <h2 class="title">Canciones</h2>
-      <p class="copy">Selección de composiciones emblemáticas: Quiero ser libre, Ni más ni menos, Son ilusiones, Amor de compra y venta, BSO Yo, el Vaquilla.</p>
-      <img src="assets/images/R-7890441-1493671344-1138.jpg" alt="Portada de singles" class="img-responsive" />
-      <h3>Estilo</h3>
-      <p class="copy">Narrativa social, estribillos memorables y guitarras rumberas con producción que evoluciona de los 70 a los 80.</p>
-      <h3>Fragmentos destacados</h3>
-      <div class="fragmento-audio">
-        <h4>Por Mi Culpa</h4>
-        <audio controls>
-          <source src="assets/audios/por-mi-culpa.mp3" type="audio/mpeg">
-        </audio>
-      </div>
-      <div class="fragmento-audio">
-        <h4>Quiero Ser Libre</h4>
-        <audio controls>
-          <source src="assets/audios/libre.mp3" type="audio/mpeg">
-        </audio>
+      <div class="section-content">
+        <h2 class="title">Canciones</h2>
+        <p class="copy">Las canciones de Jero cuentan historias que cualquiera que haya vivido en un barrio puede sentir, mezclando la rumba flamenca con emociones auténticas que llegan al corazón. Algunas de las más emblemáticas: Quiero ser libre, Ni más ni menos, Son ilusiones, Amor de compra y venta, BSO Yo, el Vaquilla.</p>
+        <img src="assets/images/R-7890441-1493671344-1138.jpg" alt="Portada de singles" class="img-responsive" />
+        <h3>Estilo</h3>
+        <p class="copy">El estilo de las canciones de Jero es como hablar con un amigo del barrio: rumba flamenca que te llega al corazón, con letras sinceras que cuentan la vida tal y como es.</p>
+        <h3>Fragmentos destacados</h3>
+        <div class="fragmento-audio">
+          <h4>Por Mi Culpa</h4>
+          <audio controls>
+            <source src="assets/audios/por-mi-culpa.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+        <div class="fragmento-audio">
+          <h4>Quiero Ser Libre</h4>
+          <audio controls>
+            <source src="assets/audios/libre.mp3" type="audio/mpeg">
+          </audio>
+        </div>
       </div>
     </section>
     <!-- Discografía -->
     <section id="disco">
-      <h2 class="title">Discografía</h2>
-      <ul class="copy">
-        <li>Ni más, ni menos (1974)</li>
-        <li>Esto sí que tiene guasa (1975)</li>
-        <li>No sé por qué (1976)</li>
-        <li>Amor de compra y venta (1980)</li>
-        <li>Yo, el Vaquilla — BSO (1985)</li>
-      </ul>
-      <img src="assets/images/portada.jpg" alt="Portada Ni más ni menos" class="img-responsive" />
+      <div class="section-content">
+        <h2 class="title">Discografía</h2>
+        <ul class="copy">
+          <li>Ni más, ni menos (1974)</li>
+          <li>Esto sí que tiene guasa (1975)</li>
+          <li>No sé por qué (1976)</li>
+          <li>Amor de compra y venta (1980)</li>
+          <li>Yo, el Vaquilla — BSO (1985)</li>
+        </ul>
+        <img src="assets/images/portada.jpg" alt="Portada Ni más ni menos" class="img-responsive" />
+      </div>
     </section>
     <!-- Legado -->
     <section id="legado">
-      <h2 class="title">Legado</h2>
-      <p class="copy">Figura esencial de la rumba española por convertirla en crónica popular de su tiempo; influencia viva en nuevas generaciones.</p>
-      <img src="assets/images/guitarra.jpg" alt="Jero guitarra" class="img-responsive" />
+      <div class="section-content">
+        <h2 class="title">Legado</h2>
+        <p class="copy">El legado de Jero se basa en reflejar la vida de los barrios humildes mediante la rumba flamenca, con letras directas, emotivas y llenas de realismo social. Su música conectó con el público por su autenticidad y sensibilidad, influyendo en generaciones de artistas y consolidándose como un símbolo de la identidad y la tradición musical popular española.</p>
+        <img src="assets/images/guitarra.jpg" alt="Jero guitarra" class="img-responsive" />
+      </div>
     </section>
   </div>
   <script>
@@ -157,7 +157,6 @@
       });
     }
     window.addEventListener('scroll', activateNavOnScroll);
-
     navLinks.forEach(link=>{
       link.addEventListener('click', e=>{
         navLinks.forEach(ln=>ln.classList.remove('active'));
