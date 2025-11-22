@@ -8,124 +8,159 @@
   <!-- Montserrat Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;600;400&display=swap" rel="stylesheet">
   <style>
     :root{
-      --col1: #181818;      /* Portada: negro profundo */
-      --col2: #232427;      /* Biografía: gris oscuro */
-      --col3: #232136;      /* Canciones: gris con toque azul */
-      --col4: #232323;      /* Discografía: gris carbono */
-      --col5: #242524;      /* Legado: gris pizarra */
-      --ink: #ededed;
-      --muted: #b2b6bc;
-      --accent: #ffd600;
-      --radius: 20px;
+      --bg: #181818;
+      --card: #232529;
+      --card2: #16171a;
+      --ink: #eee;
+      --muted: #aaaaad;
+      --accent: #ffd601;
+      --line: #27282a;
+      --radius: 14px;
+      --input: #232329;
     }
     *{box-sizing:border-box}
-    html, body {height:100%;margin:0;background:var(--col1);color:var(--ink);font-family:'Montserrat',Arial,sans-serif;}
-    body {overflow:hidden;}
-    a{color:var(--accent);text-decoration:none;transition:color.2s;}
-    a:hover{color:#fff;}
-    .navbar {
-      position:fixed; top:0; left:0; width:100%; height:56px; z-index:99999;
-      background:rgba(24,24,24,0.99); box-shadow:0 1px 8px rgba(0,0,0,0.12);
-      display:flex; align-items:center; justify-content:center;
+    html, body {
+      margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:'Montserrat',Arial,sans-serif; height:100%; }
+    body{overflow:hidden;}
+    /* Encabezado tipo menú */
+    .topbar {
+      position:fixed; inset:0 0 auto 0; height:56px; width:100vw;
+      background:var(--bg); border-bottom:1px solid var(--line); z-index:999;
+      display:flex; align-items:center; justify-content:space-between; padding:0 22px;
     }
-    .nav-list {
-      display:flex; gap:28px; list-style:none; margin:0; padding:0;
+    .brand { color:var(--accent); font-weight:800; font-size:24px; letter-spacing:.08em;}
+    .nav { display:flex; gap:28px;}
+    .nav a {
+      font-size:16px; color:var(--ink); text-decoration:none; letter-spacing:.06em; text-transform:uppercase;
+      padding:2px 0; font-weight:600; border-bottom:2px solid transparent; transition:border .2s, color .2s;
     }
-    .nav-list li a {
-      font-size:16px; font-weight:600; color:var(--ink); text-transform:uppercase;
-      letter-spacing:.09em; padding:8px 0; border-bottom:2px solid transparent; transition:border .22s;
-    }
-    .nav-list li a.active, .nav-list li a:hover {
-      border-bottom:2px solid var(--accent);
-      color:var(--accent);
-    }
+    .nav a.active, .nav a:hover { color:var(--accent); border-bottom:2px solid var(--accent);}
+    .search { color:var(--muted); font-size:15px; font-weight:500;}
+    /* Contenedor de pantallas */
     .main-container {
-      position:relative; width:100vw; height:100vh;
-      padding-top:56px; overflow:hidden;
-      background:var(--col1);
+      position:relative; width:100vw; height:100vh; padding-top:56px; background:var(--bg);
     }
-    .section {
-      position:absolute; inset:0 0 0 0;
-      width:100vw; height:calc(100vh - 56px);
-      display:flex; justify-content:center; align-items:center;
-      flex-direction:column;
-      opacity:0; pointer-events:none; transition:opacity .36s cubic-bezier(.77,.2,.21,1);
-      overflow-y:auto;
-      padding:0;
+    .section{
+      position:absolute; inset:0; width:100vw; height:calc(100vh - 56px);
+      render-mode:flat; display:flex; flex-direction:column; justify-content:center;
+      align-items:center; opacity:0; pointer-events:none; transition:opacity .32s cubic-bezier(.77,.2,.12,.91); z-index:20;
+      overflow:hidden;
     }
-    .section.active { opacity:1; pointer-events:auto; z-index:10; }
-    .section-content { width:100%; max-width:850px; margin:auto; padding:32px 5vw 32px 5vw; border-radius:var(--radius); background:rgba(30,31,33,0.16);}
-    .section--portada{background:linear-gradient(115deg, var(--col1) 60%, #232425 100%);}
-    .section--bio{background:linear-gradient(105deg, var(--col2) 60%, #181818 100%);}
-    .section--canciones{background:linear-gradient(120deg, var(--col3) 60%, #181818 100%);}
-    .section--disco{background:linear-gradient(110deg, var(--col4) 60%, #181818 100%);}
-    .section--legado{background:linear-gradient(110deg, var(--col5) 60%, #181818 100%);}
+    .section.active{ opacity:1; pointer-events:auto; z-index:25;}
+    /* Portada */
+    .section--portada{
+      background:linear-gradient(115deg, var(--bg) 68%, #232425 100%);
+      overflow:hidden;
+      display:grid; grid-template-columns:2fr 1fr; gap:0;
+      height:calc(100vh - 56px);
+    }
+    .grid-portada{
+      display:flex; flex-direction:column; justify-content:center; align-items:start;
+      padding: 0 8vw; height:100%;
+      z-index:4;
+    }
+    .titulo-portada{
+      font-size:clamp(42px,8vw,115px); font-weight:800; color:var(--ink); line-height:1;
+      margin:-10px 0 13px 0; letter-spacing:-.03em; text-shadow:0 3px 32px #0001;
+    }
+    .sub-portada{
+      color:var(--muted); font-size:21px; margin-bottom:21px; max-width:52ch;
+      min-height:48px;
+      font-weight:400; line-height:1.4;
+    }
+    .num-portada{
+      position:absolute; right:7vw; top:55%; transform:translateY(-70%); font-weight:600;
+      font-size:34px; color:var(--accent); letter-spacing:.13em;
+      opacity:.13; z-index:5; pointer-events:none;
+    }
+    .foto-portada{
+      width:420px; max-width:100vw; height:auto; border-radius:var(--radius);
+      margin:auto; align-self:center; box-shadow:0 8px 44px rgba(0,0,0,0.3); z-index:6;
+      filter:grayscale(.95) contrast(1.01); opacity:.99;
+      background:var(--card2);
+      border:3px solid var(--line);
+    }
+    /* Tarjeta lateral (opcional) */
+    .card-lateral{
+      background:var(--card); border-radius:var(--radius); box-shadow:0 2px 20px #0008;
+      color:var(--muted); font-size:16px; padding:22px 18px; margin-top:34px;
+      width:340px; max-width:92vw; word-break:break-word;
+      opacity:.95;
+    }
+    /* Secciones normales */
+    .section-content{width:100%; max-width:850px; margin:auto; border-radius:var(--radius); background:rgba(30,30,33,.16); padding:32px 5vw 32px 5vw;}
     .title{
-      font-size:clamp(32px,7vw,92px); font-weight:800; letter-spacing:-.02em;
-      line-height:.95; margin-bottom:12px;
-      color:var(--accent);
-      text-shadow:0 1px 6px #111a;
+      font-size:clamp(32px,7vw,86px); font-weight:800; letter-spacing:-.02em; line-height:.96; margin:5px 0 18px 0; color:var(--accent);
+      text-shadow:0 1px 7px #111a;
     }
-    .subtitle{ color:var(--muted); font-size:clamp(17px,2vw,21px); margin-bottom:22px; }
-    h2.title, h2{margin-bottom:12px;}
-    h3{margin-top:28px; margin-bottom:15px;}
-    .img-responsive{
-      max-width:96vw; width:100%; height:auto; margin:28px auto 20px auto; border-radius:13px;
-      box-shadow:0 3px 30px 0 rgba(40,40,44,.23);
-      display:block;
-    }
-    .fragmento-audio{
-      margin:19px auto 24px auto; background:rgba(35,35,40,.19); border-radius:15px; padding:17px 18px; max-width:420px;
-      box-shadow:0 2px 12px rgba(0,0,0,.09);
-    }
+    .subtitle{ color:var(--muted); font-size:clamp(17px,2vw,21px); margin-bottom:22px;}
+    h2.title, h2{margin-bottom:10px;}
+    h3{margin-top:30px; margin-bottom:15px;}
+    .img-responsive{max-width:96vw; width:100%; height:auto; margin:28px auto 20px auto; border-radius:13px; box-shadow:0 3px 30px 0 rgba(40,40,44,.18); display:block;}
+    .fragmento-audio{ margin:17px auto 22px auto; background:rgba(35,35,40,.19); border-radius:15px; padding:14px 18px; max-width:420px; box-shadow:0 2px 10px rgba(0,0,0,.07);}
     .fragmento-audio h4{margin:0 0 9px 0;color:var(--accent);}
     audio{ width:100%; border-radius:10px;}
     ul.copy li{margin-bottom:7px;}
+    /* Flechas */
     .arrow-nav{
-      position:fixed; right:12px; bottom:18px; display:flex; gap:12px; z-index:99999;
+      position:fixed; right:36px; bottom:38px; display:flex; gap:15px; z-index:99999;
     }
-    .arrow-btn {
-      width:48px; height:48px; border-radius:50%; border:none; background:#222; color:var(--accent);
-      display:grid; place-items:center; font-size:25px; cursor:pointer;
-      box-shadow:0 2px 14px rgba(0,0,0,.25); border:2px solid #30323a;
+    .arrow-btn{
+      width:55px; height:55px; border-radius:50%; border:none; background:var(--accent); color:var(--bg); display:grid; place-items:center; font-size:29px; cursor:pointer;
+      box-shadow:0 2px 24px rgba(0,0,0,.17); font-weight:800;
       transition:transform .18s, background .25s;
+      border: 2px solid #19191a;
     }
-    .arrow-btn:disabled {opacity:.36; pointer-events:none;}
-    .arrow-btn:hover {background:#18181d;color:#ffe;}
-    @media (max-width:800px) {
-      .section-content {padding:14px 1vw 34px 1vw;max-width:99vw;}
-      .arrow-nav{right:6px; bottom:7px;}
-      .arrow-btn{width:42px; height:42px; font-size:19px;}
-      .navbar{height:45px;}
-      .nav-list li a{font-size:13px;}
-      .title {font-size:clamp(22px,12vw,54px);}
-      .subtitle {font-size:15px;}
-      h2.title {font-size:clamp(20px,7vw,31px);}
-      .img-responsive {margin:13px 0;}
-      h3{margin-top:21px;}
+    .arrow-btn:disabled{opacity:.31;pointer-events:none;}
+    .arrow-btn:hover{background:var(--ink);color:var(--bg);}
+    @media (max-width:1000px){
+      .section--portada {grid-template-columns:1fr;}
+      .grid-portada{padding:0 4vw;}
+      .foto-portada{width:95vw;}
+      .num-portada{right:15vw;font-size:22px;}
+      .card-lateral{font-size:14px; padding:15px;}
+    }
+    @media (max-width:700px){
+      .section-content{padding:14px 1vw 27px 1vw;max-width:99vw;}
+      .arrow-nav{right:11px;bottom:12px;}
+      .arrow-btn{width:36px;height:36px;font-size:18px;}
+      .navbar{height:42px;}
+      .nav-list li a{font-size:11px;}
+      .titulo-portada{font-size:clamp(23px,13vw,52px);}
+      .img-responsive{margin:11px 0;}
+      h3{margin-top:12px;}
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <ul class="nav-list">
-      <li><a href="#" data-section="portada" class="active">Inicio</a></li>
-      <li><a href="#" data-section="bio">Biografía</a></li>
-      <li><a href="#" data-section="canciones">Canciones</a></li>
-      <li><a href="#" data-section="disco">Discografía</a></li>
-      <li><a href="#" data-section="legado">Legado</a></li>
-    </ul>
-  </nav>
+  <div class="topbar">
+    <div class="brand">Jeros</div>
+    <nav class="nav">
+      <a href="#" class="active" data-section="portada">Inicio</a>
+      <a href="#" data-section="bio">Biografía</a>
+      <a href="#" data-section="canciones">Canciones</a>
+      <a href="#" data-section="disco">Discografía</a>
+      <a href="#" data-section="legado">Legado</a>
+    </nav>
+    <div class="search">Buscar...</div>
+  </div>
   <div class="main-container">
     <!-- Portada -->
     <section id="portada" class="section section--portada active" role="tabpanel">
-      <div class="section-content">
-        <h1 class="title">Jeros</h1>
-        <div class="subtitle">"Una voz genuina, una pluma sincera, y el alma de la rumba española. Jero transformó las historias cotidianas en himnos de millones, marcando para siempre el sonido y el corazón de Los Chichos. Su música sigue resonando como símbolo de verdad, barrio y esperanza."</div>
-        <img src="assets/images/Jeros-1024x614_resized.png" alt="Jero retrato" class="img-responsive" />
+      <div class="grid-portada">
+        <div style="margin-top:36px;">
+          <div class="sub-portada">Los Chichos</div>
+          <div class="titulo-portada">Jero</div>
+        </div>
+        <div class="sub-portada">"Una voz genuina, una pluma sincera, y el alma de la rumba española. Jero transformó las historias cotidianas en himnos de millones, marcando para siempre el sonido y el corazón de Los Chichos. Su música sigue resonando como símbolo de verdad, barrio y esperanza."</div>
+        <img src="assets/images/Jeros-1024x614_resized.png" alt="Jero retrato" class="foto-portada" />
+        <div class="card-lateral">
+          Juan Antonio Jiménez Muñoz, más conocido como Jero, fue el principal compositor y vocalista del legendario grupo Los Chichos. Nacido en Valladolid en 1951, su voz y sus letras revolucionaron la rumba española en los años 70 y 80.
+        </div>
+        <div class="num-portada">001</div>
       </div>
     </section>
     <!-- Biografía -->
@@ -211,7 +246,7 @@
     }
     document.getElementById('prev').onclick = ()=> showSection(current-1);
     document.getElementById('next').onclick = ()=> showSection(current+1);
-    document.querySelectorAll('.nav-list a').forEach((el,idx)=>{
+    document.querySelectorAll('.nav a').forEach((el,idx)=>{
       el.addEventListener('click', e=>{
         e.preventDefault();
         showSection(idx);
