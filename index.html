@@ -4,45 +4,39 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jero — Biografía · Los Chichos</title>
-  <meta name="description" content="Página biográfica de Jero, con navegación elegante por secciones y acceso a fotos, audios y datos clave." />
+  <meta name="description" content="Biografía de Jero (Juan Antonio Jiménez Muñoz), voz de Los Chichos, con navegación profesional, fotos, audio y datos históricos." />
   <!-- Montserrat Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --col1: #171b21;         /* Portada: navy oscuro */
-      --col2: #222327;         /* Biografía: gris antracita */
-      --col3: #221e26;         /* Canciones: morado carbón */
-      --col4: #21241e;         /* Discografía: verde oscuro */
-      --col5: #201e1f;         /* Legado: burdeos/marrón oscuro */
+      --col1: #181818;      /* Portada: negro profundo */
+      --col2: #232427;      /* Biografía: gris oscuro */
+      --col3: #232136;      /* Canciones: gris con toque azul */
+      --col4: #232323;      /* Discografía: gris carbono */
+      --col5: #242524;      /* Legado: gris pizarra */
+      --ink: #ededed;
+      --muted: #b2b6bc;
       --accent: #ffd600;
-      --accent2: #9e8cf3;
-      --accent3: #aaf689;
-      --accent4: #f8a78c;
-      --accent5: #ee6a7c;
-      --ink: #f3f3f3;
-      --muted: #bdbdbd;
-      --title-size-clamp: clamp(38px, 6vw, 92px);
-      --subtitle-size-clamp: clamp(16px, 2.6vw, 22px);
-      --border-radius: 24px;
+      --radius: 20px;
     }
     *{box-sizing:border-box}
     html, body {height:100%;margin:0;background:var(--col1);color:var(--ink);font-family:'Montserrat',Arial,sans-serif;}
     body {overflow:hidden;}
-    a{color:var(--accent2);text-decoration:none;transition:color.2s;}
-    a:hover{color:var(--accent);}
+    a{color:var(--accent);text-decoration:none;transition:color.2s;}
+    a:hover{color:#fff;}
     .navbar {
-      position:fixed; top:0; left:0; width:100%; z-index:99999;
-      background:rgba(22,25,32, .98); display:flex; align-items:center; justify-content:center; padding:0 0 0 0; height:64px;
-      box-shadow:0 2px 14px 0 rgba(0,0,0,.13);
+      position:fixed; top:0; left:0; width:100%; height:56px; z-index:99999;
+      background:rgba(24,24,24,0.99); box-shadow:0 1px 8px rgba(0,0,0,0.12);
+      display:flex; align-items:center; justify-content:center;
     }
     .nav-list {
-      display:flex; gap:32px; list-style:none; margin:0; padding:0;
+      display:flex; gap:28px; list-style:none; margin:0; padding:0;
     }
     .nav-list li a {
-      font-size:18px; font-weight:600; color:var(--ink); text-transform:uppercase; letter-spacing:.07em; padding:6px 0 2px;
-      border-bottom:2px solid transparent; transition:border .2s;
+      font-size:16px; font-weight:600; color:var(--ink); text-transform:uppercase;
+      letter-spacing:.09em; padding:8px 0; border-bottom:2px solid transparent; transition:border .22s;
     }
     .nav-list li a.active, .nav-list li a:hover {
       border-bottom:2px solid var(--accent);
@@ -50,64 +44,68 @@
     }
     .main-container {
       position:relative; width:100vw; height:100vh;
-      overflow:hidden;
-      padding-top:64px;
+      padding-top:56px; overflow:hidden;
+      background:var(--col1);
     }
     .section {
-      position:absolute; inset:0;
-      width:100vw; height:calc(100vh - 64px);
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      position:absolute; inset:0 0 0 0;
+      width:100vw; height:calc(100vh - 56px);
+      display:flex; justify-content:center; align-items:center;
+      flex-direction:column;
       opacity:0; pointer-events:none; transition:opacity .36s cubic-bezier(.77,.2,.21,1);
       overflow-y:auto;
+      padding:0;
     }
-    .section.active { opacity:1; pointer-events:auto; z-index:5; }
-    .section-content { width:100%; max-width:900px; margin:auto; padding:40px 7vw 40px 7vw; border-radius:var(--border-radius); background:rgba(0,0,0,.26); }
-    .section--portada{background:linear-gradient(120deg, var(--col1), var(--accent2) 80%);}
-    .section--bio{background:linear-gradient(100deg, var(--col2), var(--accent) 98%);}
-    .section--canciones{background:linear-gradient(120deg, var(--col3), var(--accent3) 98%);}
-    .section--disco{background:linear-gradient(110deg, var(--col4), var(--accent4) 92%);}
-    .section--legado{background:linear-gradient(110deg, var(--col5), var(--accent5) 96%);}
+    .section.active { opacity:1; pointer-events:auto; z-index:10; }
+    .section-content { width:100%; max-width:850px; margin:auto; padding:32px 5vw 32px 5vw; border-radius:var(--radius); background:rgba(30,31,33,0.16);}
+    .section--portada{background:linear-gradient(115deg, var(--col1) 60%, #232425 100%);}
+    .section--bio{background:linear-gradient(105deg, var(--col2) 60%, #181818 100%);}
+    .section--canciones{background:linear-gradient(120deg, var(--col3) 60%, #181818 100%);}
+    .section--disco{background:linear-gradient(110deg, var(--col4) 60%, #181818 100%);}
+    .section--legado{background:linear-gradient(110deg, var(--col5) 60%, #181818 100%);}
     .title{
-      font-size:var(--title-size-clamp); font-weight:800; letter-spacing:-.03em;
-      line-height:.95; margin-bottom:10px;
+      font-size:clamp(32px,7vw,92px); font-weight:800; letter-spacing:-.02em;
+      line-height:.95; margin-bottom:12px;
       color:var(--accent);
+      text-shadow:0 1px 6px #111a;
     }
-    .subtitle{ color:var(--muted); font-size:var(--subtitle-size-clamp); margin-bottom:28px; }
-    h2.title, h2{margin-bottom:14px;}
-    h3{margin-top:28px; margin-bottom:12px;}
+    .subtitle{ color:var(--muted); font-size:clamp(17px,2vw,21px); margin-bottom:22px; }
+    h2.title, h2{margin-bottom:12px;}
+    h3{margin-top:28px; margin-bottom:15px;}
     .img-responsive{
-      max-width:96vw; width:100%; height:auto; margin:32px auto 28px auto; border-radius:12px;
-      box-shadow:0 3px 32px 0 rgba(0,0,0,.25);
+      max-width:96vw; width:100%; height:auto; margin:28px auto 20px auto; border-radius:13px;
+      box-shadow:0 3px 30px 0 rgba(40,40,44,.23);
       display:block;
     }
     .fragmento-audio{
-      margin:24px auto 32px auto; background:rgba(40,40,63,.24); border-radius:16px; padding:18px 25px; max-width:460px;
-      box-shadow:0 2px 16px 0 rgba(0,0,0,.11);
+      margin:19px auto 24px auto; background:rgba(35,35,40,.19); border-radius:15px; padding:17px 18px; max-width:420px;
+      box-shadow:0 2px 12px rgba(0,0,0,.09);
     }
-    .fragmento-audio h4{margin:0 0 10px 0;color:var(--accent);}
+    .fragmento-audio h4{margin:0 0 9px 0;color:var(--accent);}
     audio{ width:100%; border-radius:10px;}
-    ul.copy li{margin-bottom:6px;}
+    ul.copy li{margin-bottom:7px;}
     .arrow-nav{
-      position:fixed; right:14px; bottom:22px; display:flex; gap:12px; z-index:9999;
+      position:fixed; right:12px; bottom:18px; display:flex; gap:12px; z-index:99999;
     }
     .arrow-btn {
-      width:52px; height:52px; border-radius:50%; border:none; background:rgba(34,34,36,.85); color:var(--accent);
-      display:grid; place-items:center; font-size:28px; cursor:pointer; box-shadow:0 2px 12px 0 rgba(0,0,0,.19);
+      width:48px; height:48px; border-radius:50%; border:none; background:#222; color:var(--accent);
+      display:grid; place-items:center; font-size:25px; cursor:pointer;
+      box-shadow:0 2px 14px rgba(0,0,0,.25); border:2px solid #30323a;
       transition:transform .18s, background .25s;
-      border:2px solid var(--accent2);
     }
-    .arrow-btn:disabled {opacity:.35; pointer-events:none;}
-    .arrow-btn:hover {background:var(--accent2); color:#fff;transform:scale(1.13);}
-    @media (max-width:700px) {
-      .section-content {padding:18px 3vw 38px 3vw; max-width:100vw;}
-      .title {font-size:clamp(28px,11vw,54px);}
+    .arrow-btn:disabled {opacity:.36; pointer-events:none;}
+    .arrow-btn:hover {background:#18181d;color:#ffe;}
+    @media (max-width:800px) {
+      .section-content {padding:14px 1vw 34px 1vw;max-width:99vw;}
+      .arrow-nav{right:6px; bottom:7px;}
+      .arrow-btn{width:42px; height:42px; font-size:19px;}
+      .navbar{height:45px;}
+      .nav-list li a{font-size:13px;}
+      .title {font-size:clamp(22px,12vw,54px);}
       .subtitle {font-size:15px;}
-      h2.title {font-size:clamp(22px,7vw,31px);}
-      .img-responsive {margin:17px 0;}
-      .arrow-nav{right:6px; bottom:8px;}
-      .arrow-btn{width:44px; height:44px; font-size:20px;}
-      .navbar{height:52px;}
-      .nav-list li a{font-size:14px;}
+      h2.title {font-size:clamp(20px,7vw,31px);}
+      .img-responsive {margin:13px 0;}
+      h3{margin-top:21px;}
     }
   </style>
 </head>
@@ -199,7 +197,6 @@
     // Navegación entre secciones
     const sectionNames = ['portada','bio','canciones','disco','legado'];
     let current = 0;
-
     function showSection(idx) {
       sectionNames.forEach((id,i)=>{
         document.getElementById(id).classList.toggle('active', idx===i);
@@ -212,22 +209,18 @@
       document.getElementById('next').disabled = idx===sectionNames.length-1;
       current=idx;
     }
-
     document.getElementById('prev').onclick = ()=> showSection(current-1);
     document.getElementById('next').onclick = ()=> showSection(current+1);
-
     document.querySelectorAll('.nav-list a').forEach((el,idx)=>{
       el.addEventListener('click', e=>{
         e.preventDefault();
         showSection(idx);
       });
     });
-
     window.addEventListener('keydown', e=>{
       if(e.key==='ArrowRight' && current<sectionNames.length-1){showSection(current+1);}
       if(e.key==='ArrowLeft' && current>0){showSection(current-1);}
     });
-    // Inicia en portada
     showSection(0);
   </script>
 </body>
